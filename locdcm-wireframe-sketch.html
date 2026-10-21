@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe Sketch — LOCDCM Smart Desktop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#3A3833;
+  --soft:#7A766C;
+  --paper:#F6F1E5;
+  --canvas:#FDFBF2;
+  --hl:rgba(255,214,64,.55);
+  --orange:#E2732E;
+  --pink:#F8C9D2;
+  --yellow:#FBE98F;
+  --serif:Georgia,"Times New Roman",serif;
+  --hand:"Patrick Hand","Comic Sans MS",cursive;
+  --marker:"Caveat","Segoe Print",cursive;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--hand);font-size:15px;color:var(--ink);
+  background:radial-gradient(1100px 480px at 12% -6%,rgba(255,255,255,.55),transparent 60%),var(--paper);
+  padding:30px 24px 44px;
+}
+.wrap{max-width:1300px;margin:0 auto}
+
+/* ---------- header ---------- */
+header[data-od-id="header"]{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.title-block{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+h1{font-family:var(--serif);font-weight:700;font-size:34px;letter-spacing:.01em}
+.scrub{display:block;margin-top:-4px}
+.ver-tag{
+  font:600 12px var(--mono);letter-spacing:.12em;color:var(--ink);
+  border:1.8px dashed var(--ink);border-radius:10px 4px 12px 5px/5px 11px 4px 12px;
+  padding:5px 10px;transform:rotate(-2deg);background:var(--canvas);white-space:nowrap;
+}
+.subtitle{font-family:var(--marker);font-style:italic;font-size:21px;color:var(--soft);margin-top:4px}
+.dateline{font:500 11px var(--mono);letter-spacing:.1em;color:var(--soft);text-align:right;padding-bottom:8px}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:14px;flex-wrap:wrap;margin:16px 2px 20px}
+.tab{
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:var(--hand);font-size:17px;color:var(--soft);
+  display:inline-flex;align-items:center;gap:8px;padding:4px 10px;white-space:nowrap;
+}
+.tab .box{
+  width:16px;height:16px;border:2px solid var(--soft);border-radius:5px 2px 6px 3px/3px 6px 2px 5px;
+  display:inline-flex;align-items:center;justify-content:center;font-size:12px;line-height:1;color:transparent;
+}
+.tab.on{color:var(--ink);transform:rotate(-.8deg)}
+.tab.on .box{border-color:var(--ink);color:var(--ink)}
+.tab .swipe{position:relative}
+.tab.on .swipe{background:linear-gradient(100deg,transparent 1%,var(--hl) 6% 94%,transparent 99%);border-radius:5px;padding:0 5px}
+
+/* ---------- canvas ---------- */
+.canvas{
+  position:relative;border:3px solid var(--ink);
+  border-radius:255px 22px 245px 18px/18px 235px 22px 255px;
+  transform:rotate(-.35deg);
+  background:
+    linear-gradient(rgba(58,56,51,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(58,56,51,.055) 1px,transparent 1px),
+    linear-gradient(rgba(58,56,51,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(58,56,51,.028) 1px,transparent 1px),
+    var(--canvas);
+  background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  box-shadow:4px 6px 0 rgba(58,56,51,.10);
+}
+.chrome{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:2px dashed rgba(58,56,51,.45)}
+.dot{width:12px;height:12px;border:2px solid var(--ink);border-radius:50%}
+.dot:nth-child(1){border-radius:50% 45% 52% 48%}
+.dot:nth-child(2){border-radius:46% 52% 48% 54%}
+.dot:nth-child(3){border-radius:52% 46% 54% 48%}
+.url{
+  flex:1;height:24px;border:2px solid var(--ink);border-radius:14px 5px 15px 6px/6px 14px 5px 15px;
+  display:flex;align-items:center;padding:0 14px;font-family:var(--marker);font-size:16px;color:var(--soft);background:rgba(255,255,255,.45);
+}
+.frame{display:grid;grid-template-columns:238px minmax(0,1fr);gap:20px;padding:20px 20px 26px}
+@media (max-width:980px){.frame{grid-template-columns:1fr}}
+
+/* ---------- sidebar ---------- */
+.side{font-size:15px}
+.side-title{font-family:var(--marker);font-weight:700;font-size:19px;margin-bottom:8px;transform:rotate(-.6deg)}
+.nav-item{display:flex;align-items:center;gap:9px;padding:5px 4px;color:var(--soft)}
+.nav-item .ck{
+  flex:0 0 auto;width:15px;height:15px;border:2px solid var(--ink);border-radius:5px 2px 6px 3px/3px 6px 2px 5px;
+  display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;color:transparent;
+}
+.nav-item.done .ck{color:var(--ink)}
+.nav-item.on{color:var(--ink)}
+.nav-item.on .lbl{
+  background:linear-gradient(100deg,transparent 1%,var(--hl) 5% 95%,transparent 99%);
+  padding:0 6px;border-radius:5px;display:inline-block;transform:rotate(-.7deg);
+}
+.role-chip{
+  display:inline-block;margin:12px 0 6px;padding:3px 11px;
+  border:1.8px dashed var(--ink);border-radius:999px;
+  font:600 11px var(--mono);letter-spacing:.06em;transform:rotate(-1deg);background:rgba(255,255,255,.5);
+}
+.side-note{font-family:var(--marker);font-size:16px;color:var(--soft);margin-top:10px;line-height:1.25}
+.squig{margin:14px 0;display:block}
+
+/* ---------- cards & bits ---------- */
+.main{display:flex;flex-direction:column;gap:18px;min-width:0}
+.variant{display:none;flex-direction:column;gap:18px}
+.variant.onv{display:flex}
+.card{
+  position:relative;background:rgba(255,255,255,.55);
+  border:2px solid var(--ink);border-radius:255px 14px 225px 14px/14px 225px 14px 255px;
+  padding:16px 18px;
+}
+.card.alt{border-radius:14px 225px 14px 255px/255px 14px 225px 14px}
+.rl{transform:rotate(-.45deg)}
+.rr{transform:rotate(.4deg)}
+.card-h{font-family:var(--marker);font-weight:700;font-size:21px;margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ref{font:600 9.5px var(--mono);letter-spacing:.07em;color:var(--soft);border:1.2px dashed var(--soft);border-radius:6px;padding:2px 6px;white-space:nowrap}
+
+.btn{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 16px;
+  border:2px solid var(--ink);border-radius:12px 5px 14px 6px/6px 12px 5px 14px;
+  font-family:var(--hand);font-size:15px;color:var(--ink);background:rgba(255,255,255,.6);cursor:pointer;white-space:nowrap;
+}
+.btn.fill{background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(58,56,51,.16) 5px 7px)}
+.btn.dis{opacity:.45;border-style:dashed}
+.btn.xl{font-size:17px;padding:6px 22px}
+
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld label{font-family:var(--marker);font-weight:600;font-size:16px;color:var(--ink)}
+.inp{
+  min-width:96px;height:30px;padding:0 10px;display:flex;align-items:center;gap:8px;
+  border:2px solid var(--ink);border-radius:8px 4px 9px 4px/4px 9px 4px 8px;background:rgba(255,255,255,.7);
+  font-family:var(--marker);font-size:18px;
+}
+.inp .car{margin-left:auto;font-size:11px;color:var(--soft)}
+.inp.sm{min-width:74px}
+.hint{font:500 9.5px var(--mono);letter-spacing:.06em;color:var(--soft)}
+.err{font-family:var(--marker);font-size:16px;color:var(--orange);transform:rotate(-1deg)}
+
+.searchrow{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+.radio-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.radio{display:inline-flex;align-items:center;gap:7px;font-size:15px}
+.radio .rd{width:14px;height:14px;border:2px solid var(--ink);border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.radio.on .rd::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink)}
+
+/* KPI tiles */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.tile{
+  position:relative;border:2px solid var(--ink);border-radius:16px 6px 18px 7px/7px 16px 6px 18px;
+  padding:10px 14px 12px;background:rgba(255,255,255,.55);
+}
+.tile .num{font-family:var(--marker);font-weight:700;font-size:38px;line-height:1;transform:rotate(-1.2deg)}
+.tile .lbl{font-size:14px;color:var(--soft);margin-top:2px}
+.stamp{
+  position:absolute;top:-9px;right:-8px;width:26px;height:26px;border-radius:48% 52% 50% 50%;
+  background:var(--orange);color:#FFF7EC;font:700 10px/26px var(--mono);text-align:center;transform:rotate(8deg);
+}
+
+/* chips */
+.chips{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:2px 12px;
+  border:1.8px dashed var(--ink);border-radius:999px;font-family:var(--marker);font-size:16px;background:rgba(255,255,255,.55);
+}
+.chip .x{font-family:var(--hand);color:var(--soft)}
+.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+
+/* table */
+table{width:100%;border-collapse:collapse}
+th{
+  font-family:var(--hand);font-size:13.5px;letter-spacing:.05em;text-align:left;color:var(--ink);
+  padding:6px 10px;border-bottom:2.2px solid var(--ink);background:rgba(58,56,51,.055);
+}
+td{padding:6px 10px;border-bottom:1.6px dashed rgba(58,56,51,.35);font-size:14.5px}
+td.mono,th.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em}
+.yn{
+  display:inline-block;min-width:24px;text-align:center;padding:0 5px;
+  border:1.8px solid var(--ink);border-radius:7px 3px 8px 4px/4px 7px 3px 8px;
+  font-family:var(--marker);font-size:16px;background:rgba(255,255,255,.6);
+}
+.yn.n{color:var(--soft);border-style:dashed}
+.pend{
+  display:inline-block;padding:0 9px;border:1.6px dashed var(--ink);border-radius:8px;
+  font:600 10.5px var(--mono);letter-spacing:.06em;transform:rotate(-1.5deg);
+  background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(58,56,51,.15) 4px 6px);
+}
+
+/* column popover */
+.popwrap{position:relative}
+.popover{
+  position:absolute;top:-8px;right:6px;z-index:9;width:230px;padding:12px 14px;
+  border:2px solid var(--ink);border-radius:14px 6px 16px 7px/7px 15px 6px 16px;
+  background:var(--canvas);transform:rotate(-1.6deg);box-shadow:4px 5px 0 rgba(58,56,51,.15);
+}
+.popover .row{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:14.5px}
+.popover .grip{color:var(--soft);font-size:14px;letter-spacing:2px}
+.popover .foot{font-family:var(--marker);font-size:15px;color:var(--soft);margin-top:6px}
+
+/* toggle rows (maker) */
+.trow{display:grid;grid-template-columns:190px 1fr auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1.6px dashed rgba(58,56,51,.3)}
+@media (max-width:760px){.trow{grid-template-columns:1fr;gap:6px}}
+.trow .fname{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em}
+.valpair{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.arr{font-family:var(--marker);font-size:20px;color:var(--soft)}
+.locked{font-family:var(--marker);font-size:16px;color:var(--soft)}
+
+/* receipt */
+.receipt{border:1.8px dashed var(--ink);border-radius:12px;padding:12px 16px;background:rgba(255,255,255,.5)}
+.receipt .rt{font:700 11px var(--mono);letter-spacing:.1em;margin-bottom:6px}
+.receipt .li{font-size:14.5px;padding:2px 0}
+
+/* queue */
+.queue-wrap{overflow-x:auto}
+.blocked{position:relative;display:inline-block;opacity:.5}
+.blocked::after{
+  content:"✗";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#B23A2E;transform:rotate(-8deg);
+}
+
+/* charts */
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.chart-note{font:500 9.5px var(--mono);letter-spacing:.08em;color:var(--soft);margin-top:6px}
+.bars{display:flex;align-items:flex-end;gap:22px;height:110px;padding:6px 8px 0;border-bottom:2.2px solid var(--ink)}
+.bar{
+  width:44px;border:2px solid var(--ink);border-radius:8px 4px 9px 4px/4px 9px 4px 8px;
+  background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(58,56,51,.22) 5px 7px);
+}
+.bar.zero{border-style:dashed;background:none}
+.bar-lbls{display:flex;gap:22px;padding:5px 8px 0}
+.bar-lbls span{width:44px;text-align:center;font:600 9px var(--mono);color:var(--soft)}
+
+/* sticky notes */
+.sticky{
+  position:absolute;z-index:12;width:176px;padding:14px 13px 12px;
+  font-family:var(--marker);font-size:17px;line-height:1.2;color:#5A4A22;
+  box-shadow:2px 4px 0 rgba(58,56,51,.14);
+}
+.sticky::before{
+  content:"";position:absolute;top:-11px;left:50%;width:76px;height:20px;
+  transform:translateX(-50%) rotate(-3deg);
+  background:rgba(255,255,255,.55);border:1px solid rgba(58,56,51,.16);box-shadow:0 1px 2px rgba(0,0,0,.08);
+}
+.sticky.y{background:var(--yellow);border-radius:6px 14px 8px 16px/14px 8px 16px 8px}
+.sticky.p{background:var(--pink);color:#6B2F3C;border-radius:14px 8px 16px 8px/8px 16px 8px 14px}
+.sticky .cap{font:700 9px var(--mono);letter-spacing:.1em;display:block;margin-bottom:4px;opacity:.75}
+
+/* footer */
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:18px;font:500 10px var(--mono);letter-spacing:.08em;color:var(--soft)}
+.sig{font-family:var(--marker);font-size:18px;transform:rotate(-1.5deg);display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= header ================= -->
+<header data-od-id="header">
+  <div>
+    <div class="title-block">
+      <h1>LOCDCM Smart Desktop</h1>
+      <span class="ver-tag">WIREFRAME&nbsp;v0.1</span>
+    </div>
+    <svg class="scrub" width="300" height="12" viewBox="0 0 300 12" aria-hidden="true">
+      <path d="M4 8 C 70 2, 150 11, 296 5" fill="none" stroke="#3A3833" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="subtitle">— hand-drawn exploration · dedicated location-flag maintenance workspace (separate from Transaction Services desktop) · maker–checker flow</div>
+  </div>
+  <div class="dateline">2026.10.21 · DESKTOP 1440<br>LO-FI / MARKER + PENCIL</div>
+</header>
+
+<!-- ================= tabs ================= -->
+<nav class="tabs" data-od-id="tabs">
+  <button class="tab on" data-v="a"><span class="box">✓</span><span class="swipe">01 · A · SEARCH &amp; BROWSE</span></button>
+  <button class="tab" data-v="b"><span class="box">✓</span>02 · B · RESULTS GRID</button>
+  <button class="tab" data-v="c"><span class="box">✓</span>03 · C · MAKER — SUBMIT</button>
+  <button class="tab" data-v="d"><span class="box">✓</span>04 · D · CHECKER — APPROVE</button>
+</nav>
+
+<!-- ================= sketch canvas ================= -->
+<section class="canvas" data-od-id="canvas">
+  <div class="chrome">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="url">smartdesk.internal/locdcm/workspace</span>
+  </div>
+
+  <div class="frame">
+
+    <!-- ---------- sidebar ---------- -->
+    <aside class="side" data-od-id="sidebar">
+      <div class="side-title">smart desktop</div>
+      <div class="nav-item done"><span class="ck">✓</span><span class="lbl">Transaction Services</span></div>
+      <div class="nav-item on"><span class="ck">✓</span><span class="lbl">LOCDCM Workspace</span></div>
+      <div class="nav-item done"><span class="ck"></span><span class="lbl">Search &amp; Browse</span></div>
+      <div class="nav-item done"><span class="ck"></span><span class="lbl">My Submitted Changes</span></div>
+      <div class="nav-item done"><span class="ck"></span><span class="lbl">Approval Queue</span></div>
+      <div class="nav-item done"><span class="ck"></span><span class="lbl">Audit Log</span></div>
+
+      <svg class="squig" width="150" height="10" viewBox="0 0 150 10" aria-hidden="true">
+        <path d="M2 5 q 12 -5 24 0 t 24 0 t 24 0 t 24 0 t 24 0 t 24 0" fill="none" stroke="#7A766C" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+
+      <span class="role-chip">ROLE: MAKER-CHECKER</span>
+      <div class="side-note">browse-only role → read-only,<br>controls disabled (SD-002)</div>
+      <div class="side-note">prod update access →<br>business approver first (SD-002 AC3)</div>
+    </aside>
+
+    <!-- ---------- main ---------- -->
+    <div class="main">
+
+      <!-- ===== variant A : search & browse ===== -->
+      <div class="variant onv" data-v="a">
+
+        <div class="card rl" data-od-id="variant-a-search">
+          <div class="card-h">search LOCDCM records <span class="ref">SD-003</span></div>
+          <div class="searchrow">
+            <div class="fld">
+              <label>location code</label>
+              <div class="inp">347</div>
+              <span class="hint">3-digit · e.g. 347</span>
+            </div>
+            <div class="fld">
+              <label>UTI_MT54X_FLG</label>
+              <div class="inp sm">Y <span class="car">▾</span></div>
+              <span class="hint">Y / N / any</span>
+            </div>
+            <div class="fld">
+              <label>ISO20022_FLG</label>
+              <div class="inp sm">any <span class="car">▾</span></div>
+              <span class="hint">Y / N / any</span>
+            </div>
+            <div class="fld">
+              <label>DIOGENE_LOC_FLAG</label>
+              <div class="inp sm">any <span class="car">▾</span></div>
+              <span class="hint">Y / N / any</span>
+            </div>
+            <button class="btn fill xl">SEARCH</button>
+            <button class="btn">clear</button>
+          </div>
+          <div class="radio-row">
+            <span class="radio on"><span class="rd"></span>one location (code above)</span>
+            <span class="radio"><span class="rd"></span>All locations — no single-location restriction <span class="hint">SD-003 AC2</span></span>
+            <span class="err">↖ location must be exactly 3 digits!</span>
+          </div>
+        </div>
+
+        <div class="kpis" data-od-id="kpis">
+          <div class="tile rr"><span class="stamp">A</span>
+            <div class="num">128</div><div class="lbl">records found</div>
+          </div>
+          <div class="tile rl"><span class="stamp">Y</span>
+            <div class="num">71 <span style="font-size:20px;color:var(--soft)">/ 54</span></div>
+            <div class="lbl">flags set Y / N</div>
+          </div>
+          <div class="tile rr"><span class="stamp">!</span>
+            <div class="num">3</div><div class="lbl">pending approvals → 04 · D</div>
+          </div>
+        </div>
+
+        <div class="card alt rr" data-od-id="sticky-browse" style="min-height:70px">
+          <div class="card-h">what happens on SEARCH <span class="ref">SD-001 AC2</span></div>
+          <div style="font-size:15px;line-height:1.5">
+            Smart Desktop calls GSMAC retrieval stored procedure (SD-GS-008) with location + flag criteria →
+            DB2 rows → configured fields rendered as grid columns → see tab <b>02 · B</b>.
+            Browse-only users: search fine, every edit/approve control disabled.
+          </div>
+        </div>
+
+        <div class="sticky y" data-od-id="sticky-next" style="top:210px;right:-18px;transform:rotate(3deg)">
+          <span class="cap">NEXT STEP</span>
+          results land in the grid →<br>tab 02 · B — then maker<br>edits in 03 · C
+        </div>
+      </div>
+
+      <!-- ===== variant B : results grid ===== -->
+      <div class="variant" data-v="b">
+
+        <div class="card rr" data-od-id="criteria" style="padding-bottom:10px">
+          <div class="chips">
+            <span class="hint" style="font-size:10px">APPLIED CRITERIA (SD-004):</span>
+            <span class="chip">LOC = 347 <span class="x">✕</span></span>
+            <span class="chip">UTI_MT54X_FLG = Y <span class="x">✕</span></span>
+            <button class="btn">new search</button>
+          </div>
+        </div>
+
+        <div class="card rl" data-od-id="variant-b-grid">
+          <div class="popwrap">
+            <div class="card-h" style="margin-bottom:12px">
+              results — configurable grid <span class="ref">SD-004</span>
+              <button class="btn">▦ columns ▾</button>
+              <button class="btn">filter: UTI = Y ▾</button>
+              <button class="btn fill">export ▾ Excel / CSV / PDF</button>
+            </div>
+            <div class="popover" data-od-id="columns-popover">
+              <div class="row"><span class="grip">≡</span><span class="ck" style="width:14px;height:14px;border:2px solid var(--ink);border-radius:5px 2px 6px 3px;display:inline-flex;align-items:center;justify-content:center;font-size:10px">✓</span> LOC CODE</div>
+              <div class="row"><span class="grip">≡</span><span class="ck" style="width:14px;height:14px;border:2px solid var(--ink);border-radius:5px 2px 6px 3px;display:inline-flex;align-items:center;justify-content:center;font-size:10px">✓</span> UTI_MT54X_FLG</div>
+              <div class="row"><span class="grip">≡</span><span class="ck" style="width:14px;height:14px;border:2px solid var(--ink);border-radius:5px 2px 6px 3px;display:inline-flex;align-items:center;justify-content:center;font-size:10px">✓</span> ISO20022_FLG</div>
+              <div class="row"><span class="grip">≡</span><span class="ck" style="width:14px;height:14px;border:2px solid var(--ink);border-radius:5px 2px 6px 3px;display:inline-flex;align-items:center;justify-content:center"></span> DIOGENE_LOC_FLAG</div>
+              <div class="foot">drag ≡ to reorder · ☑ to show/hide</div>
+            </div>
+          </div>
+
+          <div class="queue-wrap">
+          <table>
+            <thead><tr>
+              <th class="mono">LOC</th><th class="mono">UTI_MT54X_FLG</th><th class="mono">ISO20022_FLG</th><th class="mono">DIOGENE</th><th class="mono">UPDATED</th><th></th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="mono">347</td><td><span class="yn">Y</span></td><td><span class="yn">Y</span></td><td><span class="yn n">N</span></td><td class="mono">09.12</td><td><button class="btn dis" style="font-size:12px;padding:1px 9px">edit</button></td></tr>
+              <tr><td class="mono">348</td><td><span class="yn n">N</span></td><td><span class="yn">Y</span></td><td><span class="yn">Y</span></td><td class="mono">09.10</td><td><button class="btn dis" style="font-size:12px;padding:1px 9px">edit</button></td></tr>
+              <tr><td class="mono">350</td><td><span class="yn">Y</span> <span class="pend">PENDING → N</span></td><td><span class="yn n">N</span></td><td><span class="yn">Y</span></td><td class="mono">09.09</td><td><button class="btn dis" style="font-size:12px;padding:1px 9px">edit</button></td></tr>
+              <tr><td class="mono">351</td><td><span class="yn">Y</span></td><td><span class="yn n">N</span></td><td><span class="yn n">N</span></td><td class="mono">09.08</td><td><button class="btn dis" style="font-size:12px;padding:1px 9px">edit</button></td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="chart-note" style="margin-top:8px">…82 more rows · ▨ PENDING = proposed value awaiting checker, active value still shown (SD-006 AC5)</div>
+        </div>
+
+        <div class="sticky y" data-od-id="sticky-export" style="top:-14px;left:340px;transform:rotate(-2.5deg)">
+          <span class="cap">SD-005</span>
+          export follows the <b>current filtered</b> set —<br>Excel / CSV / PDF
+        </div>
+        <div class="sticky p" data-od-id="sticky-browsedis" style="bottom:-16px;right:6px;transform:rotate(2deg)">
+          <span class="cap">BROWSE ROLE</span>
+          edit buttons disabled —<br>needs maker-checker role<br>(SD-002 AC1)
+        </div>
+      </div>
+
+      <!-- ===== variant C : maker submit ===== -->
+      <div class="variant" data-v="c">
+
+        <div class="card rl" data-od-id="variant-c-maker">
+          <div class="card-h">
+            edit flags — LOC 347 <span class="ref">SD-006</span>
+            <span class="role-chip" style="margin:0">ROLE: MAKER-CHECKER</span>
+          </div>
+
+          <div class="trow" data-od-id="flag-toggles">
+            <span class="fname">UTI_MT54X_FLG</span>
+            <span class="valpair">
+              <span class="yn">Y</span><span class="arr">→</span>
+              <span class="yn" style="background:var(--hl);transform:rotate(-2deg)">N</span>
+              <span class="hint">only Y / N selectable (SD-006 AC3)</span>
+            </span>
+            <button class="btn dis" style="font-size:12px">revert</button>
+          </div>
+          <div class="trow">
+            <span class="fname">ISO20022_FLG</span>
+            <span class="valpair"><span class="yn">Y</span><span class="locked">— no change</span></span>
+            <button class="btn" style="font-size:12px">change</button>
+          </div>
+          <div class="trow" style="border-bottom:0">
+            <span class="fname">DIOGENE_LOC_FLAG</span>
+            <span class="valpair"><span class="yn n">N</span><span class="locked">— no change</span></span>
+            <button class="btn" style="font-size:12px">change</button>
+          </div>
+
+          <div style="display:flex;gap:14px;align-items:center;margin-top:14px;flex-wrap:wrap">
+            <button class="btn fill xl">SUBMIT FOR APPROVAL</button>
+            <span class="err">submitter recorded on request (SD-006 AC2)</span>
+          </div>
+        </div>
+
+        <div class="card alt rr" data-od-id="variant-c-receipt">
+          <div class="receipt">
+            <div class="rt">REQUEST CREATED · REQ-0214</div>
+            <div class="li">▸ 347 · UTI_MT54X_FLG &nbsp;<span class="yn">Y</span> <span class="arr">→</span> <span class="yn" style="background:var(--hl)">N</span></div>
+            <div class="li">▸ status: <span class="pend">PENDING APPROVAL</span> &nbsp;·&nbsp; submitted by: you</div>
+            <div class="li">▸ production LOCDCM value <b>unchanged</b> until a checker approves (SD-006 AC1)</div>
+            <div class="li">▸ other users still see active <span class="yn">Y</span> + pending marker (SD-006 AC5)</div>
+          </div>
+        </div>
+
+        <div class="sticky p" data-od-id="sticky-selfapproval" style="top:-16px;right:30px;transform:rotate(2.5deg)">
+          <span class="cap">RULE</span>
+          you can't approve your own<br>change → checker picks it up<br>in tab 04 · D (SD-002 AC2)
+        </div>
+      </div>
+
+      <!-- ===== variant D : checker approve ===== -->
+      <div class="variant" data-v="d">
+
+        <div class="card rr" data-od-id="variant-d-queue">
+          <div class="card-h">approval queue <span class="ref">SD-007</span></div>
+          <div class="queue-wrap">
+          <table>
+            <thead><tr>
+              <th class="mono">REQ</th><th class="mono">LOC</th><th class="mono">FLAG</th><th>CUR → NEW</th><th class="mono">MAKER</th><th></th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td class="mono">REQ-0214</td><td class="mono">347</td><td class="mono">UTI_MT54X_FLG</td>
+                <td><span class="yn">Y</span> <span class="arr">→</span> <span class="yn" style="background:var(--hl)">N</span></td>
+                <td class="mono">a.kowalski</td>
+                <td><button class="btn fill" style="font-size:12px;padding:1px 10px">approve</button> <button class="btn" style="font-size:12px;padding:1px 10px">reject</button></td>
+              </tr>
+              <tr>
+                <td class="mono">REQ-0212</td><td class="mono">350</td><td class="mono">ISO20022_FLG</td>
+                <td><span class="yn n">N</span> <span class="arr">→</span> <span class="yn">Y</span></td>
+                <td class="mono"><b>you</b></td>
+                <td><span class="blocked"><button class="btn" style="font-size:12px;padding:1px 10px">approve</button></span> <span class="hint">SD-007 AC3</span></td>
+              </tr>
+              <tr>
+                <td class="mono">REQ-0211</td><td class="mono">402</td><td class="mono">DIOGENE_LOC_FLAG</td>
+                <td><span class="yn">Y</span> <span class="arr">→</span> <span class="yn n">N</span></td>
+                <td class="mono">m.tanaka</td>
+                <td><button class="btn fill" style="font-size:12px;padding:1px 10px">approve</button> <button class="btn" style="font-size:12px;padding:1px 10px">reject</button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div class="charts">
+          <div class="card alt rl" data-od-id="review-detail">
+            <div class="card-h">review REQ-0214 <span class="ref">SD-007 AC1</span></div>
+            <div class="receipt">
+              <div class="li">▸ location: <b>347</b></div>
+              <div class="li">▸ flag: <b>UTI_MT54X_FLG</b></div>
+              <div class="li">▸ current: <span class="yn">Y</span> &nbsp;→&nbsp; proposed: <span class="yn" style="background:var(--hl)">N</span></div>
+              <div class="li">▸ maker: a.kowalski · 2026.10.20</div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+              <button class="btn fill xl">APPROVE</button>
+              <button class="btn xl">REJECT</button>
+            </div>
+            <div class="chart-note" style="margin-top:8px">on approve → GSMAC update SP applies value (SD-GS-009) · approver + requester recorded for audit (AC2 / GS-009 AC3)</div>
+          </div>
+
+          <div class="card rl" data-od-id="line-chart">
+            <div class="card-h">pending requests / day</div>
+            <svg viewBox="0 0 270 130" width="100%" aria-hidden="true">
+              <path d="M32 12 C 31 46, 33 78, 32 104 L 258 103" fill="none" stroke="#3A3833" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M32 88 C 62 76, 82 94, 112 82 S 168 52, 198 62 S 236 34, 252 30" fill="none" stroke="#3A3833" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="62" cy="82" r="4" fill="#FDFBF2" stroke="#3A3833" stroke-width="2"/>
+              <circle cx="112" cy="82" r="4" fill="#FDFBF2" stroke="#3A3833" stroke-width="2"/>
+              <circle cx="168" cy="58" r="4" fill="#FDFBF2" stroke="#3A3833" stroke-width="2"/>
+              <circle cx="218" cy="46" r="4" fill="#FDFBF2" stroke="#3A3833" stroke-width="2"/>
+              <text x="30" y="122" font-family="ui-monospace,Menlo,monospace" font-size="8.5" fill="#7A766C">W1</text>
+              <text x="105" y="122" font-family="ui-monospace,Menlo,monospace" font-size="8.5" fill="#7A766C">W2</text>
+              <text x="180" y="122" font-family="ui-monospace,Menlo,monospace" font-size="8.5" fill="#7A766C">W3</text>
+              <text x="238" y="122" font-family="ui-monospace,Menlo,monospace" font-size="8.5" fill="#7A766C">W4</text>
+              <text x="40" y="24" font-family="ui-monospace,Menlo,monospace" font-size="8.5" fill="#7A766C">pending ↑</text>
+            </svg>
+            <div class="chart-note">sketch placeholder — real chart in hi-fi</div>
+          </div>
+
+          <div class="card rr" data-od-id="bar-chart">
+            <div class="card-h">pending by flag</div>
+            <div class="bars">
+              <div class="bar" style="height:64%"></div>
+              <div class="bar" style="height:34%"></div>
+              <div class="bar" style="height:88%"></div>
+              <div class="bar zero" style="height:8%"></div>
+            </div>
+            <div class="bar-lbls"><span>UTI</span><span>ISO</span><span>DIO</span><span>oth</span></div>
+            <div class="chart-note">hatch = placeholder fill</div>
+          </div>
+        </div>
+
+        <div class="sticky y" data-od-id="sticky-gsmac" style="top:-18px;left:46%;transform:rotate(-2deg)">
+          <span class="cap">NEEDS REVIEW</span>
+          only approved changes reach GSMAC —<br>unapproved → value never touched<br>(SD-GS-009 AC2)
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /frame -->
+</section>
+
+<!-- ================= footer ================= -->
+<div class="foot" data-od-id="footer">
+  <span>GLYPHS: ☑ enabled · ▢ unchecked · ▨ pending / hatch · ✕ blocked &nbsp;|&nbsp; sketch only — not a pixel spec</span>
+  <span class="sig">jz — whiteboard, 15 min ✎</span>
+</div>
+
+</div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+const variants=document.querySelectorAll('.variant');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  variants.forEach(v=>v.classList.toggle('onv',v.dataset.v===t.dataset.v));
+}));
+</script>
+</body>
+</html>
